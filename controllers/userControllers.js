@@ -7,7 +7,7 @@ import fs from 'fs'
 
 export const createUser = expressAsyncHandler(async (req, res) => {
   const db = getDb();
-  const { firstname, lastname, email, password, role } = req.body;
+  const { firstname, lastname, email, password, role,phone } = req.body;
   // check user if already exist
   const user = await db.collection("users").findOne({ email });
   if (user) {
@@ -24,6 +24,7 @@ export const createUser = expressAsyncHandler(async (req, res) => {
       actif: false,
       image: "",
       createdAt: new Date(),
+      phone
     });
     const u = await db.collection("users").findOne({ email });
     res.status(201).json(u);
@@ -163,4 +164,20 @@ export const uploadImage = expressAsyncHandler(async (req, res) => {
     .findOne({ _id: new ObjectId(user) });
     res.status(201).json(newUserData);
     }
+  })
+
+
+  export const findOneUserByID = expressAsyncHandler(async(req,res) => {
+    const db = getDb()
+    const user = req.query.user
+    const userData = await db.collection('users').findOne({_id:new ObjectId(user)})
+    res.json(userData)
+  })
+
+
+  export const deleteUser = expressAsyncHandler(async(req,res) => {
+    const db = getDb()
+    const user = req.query.user
+   await db.collection('users').deleteOne({_id:new ObjectId(user)})
+    res.json({message:'userDeleted'})
   })
