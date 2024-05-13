@@ -5,7 +5,7 @@ import {
   deleteUser,
   findOneUserByID,
   getAllUsers,
-  sendNotification,
+ 
   signinUser,
   updateUser,
   uploadImage,
@@ -34,8 +34,7 @@ router.post("/upload-image", uploadImage);
 // CHANGE PASSWORD
 router.post("/change-password", changePassword);
 
-// SEND NOTIFICATION
-router.post("/send-notification", sendNotification);
+
 
 router.delete('/delete-user',deleteUser)
 

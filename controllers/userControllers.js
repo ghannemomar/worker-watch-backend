@@ -1,5 +1,4 @@
 import { getDb } from "../mongodb.js";
-import { Expo } from "expo-server-sdk";
 import expressAsyncHandler from "express-async-handler";
 import { ObjectId } from "mongodb";
 import CryptoJS from "crypto-js";
@@ -67,27 +66,7 @@ export const updateUser = expressAsyncHandler(async (req, res) => {
     res.status(201).json(newUserData);
 });
 
-export const sendNotification = expressAsyncHandler(async (req, res) => {
-  let expo = new Expo({});
-  const messages = [
-    {
-      to: "ExponentPushToken[fyfWH3FkPW_77mONYf2e0y]",
-      title: "TITLE",
-      body: "TEXT OF NOTIF HERE",
-    },
-  ];
-  expo
-    .sendPushNotificationsAsync(messages)
-    .then((receipts) => {
-      res.json({ messages, receipts });
-    })
-    .catch((error) => {
-      res.json({
-        message: "Error sending push notifications",
-        error,
-      });
-    });
-});
+
 
 
 export const uploadImage = expressAsyncHandler(async (req, res) => {
