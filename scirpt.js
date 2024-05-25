@@ -1,6 +1,11 @@
-import CryptoJS from "crypto-js";
+// import { connectToServer, getDb } from "./mongodb.js";
 
+// await connectToServer();
 
-const hashedPass = CryptoJS.SHA512("123456").toString(CryptoJS.enc.Hex);
+// const db = getDb();
 
-console.log(hashedPass)
+// await db
+//   .collection("sessions")
+//   .deleteMany({ temperature_records: { $exists: false } });
+
+// console.log("ok");
